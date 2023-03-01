@@ -6,7 +6,7 @@ import { prisma } from '../prisma'
 export function PrismaAdapter(req: NextApiRequest, res: NextApiResponse,): Adapter {
   return {
     async createUser(user) {
-      const { '@ignitecall:userId': userIdOnCookies } = parseCookies({ req })
+      const { '@06ignitecall:userId': userIdOnCookies } = parseCookies({ req })
 
       if (!userIdOnCookies) {
         throw new Error('User ID not found on cookies.')
@@ -23,7 +23,7 @@ export function PrismaAdapter(req: NextApiRequest, res: NextApiResponse,): Adapt
         },
       })
 
-      destroyCookie({ res }, '@ignitecall:userId', {
+      destroyCookie({ res }, '@06ignitecall:userId', {
         path: '/',
       })
 

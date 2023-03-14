@@ -1,6 +1,6 @@
 import { Check, ClipboardText, Trash } from "phosphor-react";
 import { useState } from "react";
-import { Container, TaskCounter, TaskListEmpty, TaskListTable, TaskProgress } from "./styles";
+import { CheckboxContainer, Container, TaskCounter, TaskListEmpty, TaskListTable, TaskProgress, TaskText, TrashButton } from "./styles";
 import * as Checkbox from '@radix-ui/react-checkbox';
 
 interface Task {
@@ -42,17 +42,16 @@ export function Tasks() {
                             <TaskListTable>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <Checkbox.Root checked={checked} onCheckedChange={(checked) => setChecked(checked)}>
+                                        <td width={"20px"}>
+                                            <CheckboxContainer checked={checked} onCheckedChange={(checked) => setChecked(checked === true)}>
                                                 <Checkbox.Indicator asChild>
-                                                    <p>Teste1</p>
+                                                    <Check />
                                                 </Checkbox.Indicator>
-                                                {checked === false && <p>Teste2</p>}
-                                            </Checkbox.Root>
+                                            </CheckboxContainer>
                                         </td>
-                                        <td width={"80%"}>Teste</td>
-                                        <td>
-                                            <button><Trash /></button>
+                                        <td><TaskText complete={checked}>Teste</TaskText></td>
+                                        <td width={"20px"}>
+                                            <TrashButton><Trash /></TrashButton>
                                         </td>
                                     </tr>
                                 </tbody>

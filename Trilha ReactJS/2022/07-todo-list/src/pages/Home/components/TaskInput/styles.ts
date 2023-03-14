@@ -16,6 +16,7 @@ export const Container = styled('div', {
 
     'input:focus': {
         outline: '2px solid $colors$purple-dark',
+        color: '$gray-100',
     },
 
     'button': {

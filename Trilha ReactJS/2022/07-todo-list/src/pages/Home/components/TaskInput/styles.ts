@@ -1,6 +1,6 @@
 import { styled } from "../../../../lib/stitches.config";
 
-export const Container = styled('div', {
+export const Container = styled('form', {
     display: 'flex',
     gap: '1rem',
     marginTop: '-1.5rem',
@@ -39,4 +39,9 @@ export const Container = styled('div', {
     'button:hover': {
         backgroundColor: '$blue',
     }
+})
+
+export const ErrorMessage = styled('span', {
+    fontSize: '0.8rem',
+    color: '$danger',
 })

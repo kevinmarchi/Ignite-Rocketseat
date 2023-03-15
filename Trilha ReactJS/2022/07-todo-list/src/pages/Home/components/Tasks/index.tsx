@@ -13,8 +13,6 @@ export function Tasks() {
 
     const [checked, setChecked] = useState(false);
 
-    console.log(checked);
-
     return (
         <Container>
             <TaskProgress>

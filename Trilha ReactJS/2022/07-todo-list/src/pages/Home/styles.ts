@@ -8,5 +8,5 @@ export const Container = styled('main', {
 })
 
 export const ContentContainer = styled('div', {
-    
+    width: '100%',
 })

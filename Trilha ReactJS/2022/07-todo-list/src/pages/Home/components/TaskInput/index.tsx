@@ -1,5 +1,5 @@
 import { PlusCircle } from "phosphor-react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TaskContext } from "../../../../contexts/TaskContext";
 import { Container, ErrorMessage } from "./styles";
@@ -9,9 +9,12 @@ interface TaskProps {
 }
 
 export function TaskInput() {
-
     const {tasks, setTasks} = useContext(TaskContext)
-    const {register, handleSubmit, formState: {errors}} = useForm<TaskProps>();
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<TaskProps>({
+        defaultValues: {
+            description: '',
+        }
+    });
 
     function handleCreateNewTask(data : TaskProps) {
         const newTask = {
@@ -21,6 +24,7 @@ export function TaskInput() {
         }
 
         setTasks([...tasks, newTask])
+        reset()
     }
 
     return (

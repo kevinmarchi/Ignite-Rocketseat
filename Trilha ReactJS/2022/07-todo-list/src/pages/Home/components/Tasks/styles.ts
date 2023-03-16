@@ -3,13 +3,22 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 
 export const Container = styled('div', {
     marginTop: '5rem',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
 })
 
 export const TaskProgress = styled('div', {
+    width: '50%',
     display: 'flex',
     justifyContent: 'space-between',
     paddingBottom: '2rem',
     borderBottom: '1px solid $colors$gray-400',
+
+    '@media (max-width: 1100px)': {
+        width: '90%',
+    }
 })
 
 export const TaskCounter = styled('label', {
@@ -51,7 +60,7 @@ export const TaskListEmpty = styled('div', {
 })
 
 export const TaskListTable = styled('table', {
-    width: '100%',
+    width: '50%',
     borderCollapse: 'separate',
     borderSpacing: '0 0.5rem',
     marginTop: '1.5rem',
@@ -72,6 +81,10 @@ export const TaskListTable = styled('table', {
             'borderBottomRightRadius': 6,
         }
     },
+
+    '@media (max-width: 1100px)': {
+        width: '90%',
+    }
 })
 
 export const TrashButton = styled('button', {

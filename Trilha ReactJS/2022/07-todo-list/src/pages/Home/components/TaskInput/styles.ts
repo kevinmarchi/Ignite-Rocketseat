@@ -2,16 +2,19 @@ import { styled } from "../../../../lib/stitches.config";
 
 export const Container = styled('form', {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: '1rem',
     marginTop: '-1.5rem',
+    width: '100%',
 
     'input': {
         backgroundColor: '$gray-500',
         color: '$gray-300',
-        padding: '0.9rem',
-        width: '46rem',
+        padding: '0.9rem',        
         border: 0,
         borderRadius: 5,
+        width: 'calc(50% - 95.55px)',
     },
 
     'input:focus': {
@@ -33,11 +36,17 @@ export const Container = styled('form', {
         justifyContent: 'center',
         alignItems: 'center',
 
-        transition: 'background-color 0.2s'
+        transition: 'background-color 0.2s',
     },
 
     'button:hover': {
         backgroundColor: '$blue',
+    },
+
+    '@media (max-width: 1100px)': {
+        'input': {
+            width: 'calc(90% - 95.55px)',
+        }
     }
 })
 

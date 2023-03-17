@@ -19,46 +19,45 @@ interface TableProps {
 export function Table({handleCompleteTask, handleDeleteTask}: TableProps) {
     const {tasks} = useContext(TaskContext);
 
-    const columns = useMemo<ColumnDef<Task>[]>(() => {
-        return [
-            {
-                header: 'teste',
-                columns: [
-                    {
-                        accessorKey: 'complete',
-                        cell: (task) => {
-                            return (
-                                <CheckboxContainer checked={task.getValue()} onCheckedChange={(checked) => handleCompleteTask(checked === true, task.row.original)}>
-                                    <Checkbox.Indicator asChild>
-                                        <Check />
-                                    </Checkbox.Indicator>
-                                </CheckboxContainer>
-                            )
-                        },
-                        size: "20px",
+    const columns: ColumnDef<Task>[] = [
+        {
+            header: 'teste',
+            columns: [
+                {
+                    accessorKey: 'complete',
+                    cell: (task) => {
+                        return (
+                            <CheckboxContainer checked={task.getValue()} onCheckedChange={(checked) => handleCompleteTask(checked === true, task.row.original)}>
+                                <Checkbox.Indicator asChild>
+                                    <Check />
+                                </Checkbox.Indicator>
+                            </CheckboxContainer>
+                        )
                     },
-                    {
-                        accessorKey: 'description',
-                        cell: (task) => {
-                            return (
-                                <TaskText complete={task.row.original.complete}>{task.getValue()}</TaskText>
-                            )
-                        },
-                        size: "auto",
+                    size: 20,
+                },
+                {
+                    accessorKey: 'description',
+                    cell: (task) => {
+                        return (
+                            <TaskText complete={task.row.original.complete}>{task.getValue()}</TaskText>
+                        )
                     },
-                    {
-                        accessorKey: 'id',
-                        cell: (task) => {
-                            return (
-                                <TrashButton onClick={() => handleDeleteTask(task.row.original)}><Trash /></TrashButton>
-                            )
-                        },
-                        size: "20px",
-                    }
-                ]
-            }
-        ]
-    }, [])
+                    size: 'auto' as any
+                    
+                },
+                {
+                    accessorKey: 'id',
+                    cell: (task) => {
+                        return (
+                            <TrashButton onClick={() => handleDeleteTask(task.row.original)}><Trash /></TrashButton>
+                        )
+                    },
+                    size: 20,
+                }
+            ]
+        }
+    ]
 
     const table = useReactTable({
         data: tasks,

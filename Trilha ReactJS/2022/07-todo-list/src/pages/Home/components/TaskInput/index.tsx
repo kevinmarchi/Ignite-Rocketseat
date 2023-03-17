@@ -2,7 +2,8 @@ import { PlusCircle } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { TaskContext } from "../../../../contexts/TaskContext";
-import { Container, ErrorMessage } from "./styles";
+import { Container, VideoContainer } from "./styles";
+import videoRick from "../../../../assets/video-rick.mp4"
 
 interface TaskProps {
     description: string;
@@ -36,7 +37,7 @@ export function TaskInput() {
                     <PlusCircle size={20} />
                 </button>
             </Container>
-            {errors.description && <ErrorMessage>Este campo é obrigatório!!!</ErrorMessage>}
+            {errors.description && <VideoContainer><video src={videoRick} autoPlay width='50%'></video></VideoContainer>}
         </>
     )
 }

@@ -1,23 +1,14 @@
-import { keyframes, styled } from "../../../../lib/stitches.config";
+import { styled } from "../../../../lib/stitches.config";
 
 export const Container = styled('div', {
     marginTop: '5rem',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
 })
 
 export const TaskProgress = styled('div', {
-    width: '50%',
     display: 'flex',
     justifyContent: 'space-between',
     paddingBottom: '2rem',
     borderBottom: '1px solid $colors$gray-400',
-
-    '@media (max-width: 1100px)': {
-        width: '90%',
-    }
 })
 
 export const TaskCounter = styled('label', {

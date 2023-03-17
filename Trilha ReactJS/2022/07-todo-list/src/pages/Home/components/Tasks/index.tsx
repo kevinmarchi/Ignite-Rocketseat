@@ -13,19 +13,12 @@ interface Task {
 export function Tasks() {
     const {tasks, setTasks} = useContext(TaskContext);
 
-    console.log('aqui é na parte principal')
-    console.log(tasks)
-    console.log('-------------------------------')
-
-
     function handleDeleteTask(taskToDelete : Task) {
 
         const tasksWithoutDeleted = tasks.filter((task) => {
             return task.id !== taskToDelete.id
         })
-        console.log('aqui é dentro da função')
-        console.log(tasks)
-        // setTasks(tasksWithoutDeleted)
+        setTasks(tasksWithoutDeleted)
     }
 
     function handleCompleteTask(checked : boolean, taskToUpdate: Task) {

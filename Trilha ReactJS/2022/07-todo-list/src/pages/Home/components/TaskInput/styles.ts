@@ -6,7 +6,6 @@ export const Container = styled('form', {
     alignItems: 'center',
     gap: '1rem',
     marginTop: '-1.5rem',
-    width: '100%',
 
     'input': {
         backgroundColor: '$gray-500',
@@ -14,7 +13,7 @@ export const Container = styled('form', {
         padding: '0.9rem',        
         border: 0,
         borderRadius: 5,
-        width: 'calc(50% - 95.55px)',
+        width: '90%'
     },
 
     'input:focus': {
@@ -42,15 +41,11 @@ export const Container = styled('form', {
     'button:hover': {
         backgroundColor: '$blue',
     },
-
-    '@media (max-width: 1100px)': {
-        'input': {
-            width: 'calc(90% - 95.55px)',
-        }
-    }
 })
 
-export const ErrorMessage = styled('span', {
-    fontSize: '0.8rem',
-    color: '$danger',
+export const VideoContainer = styled('div', {
+    width: '100%',
+    marginTop: '1rem',
+    display: 'flex',
+    justifyContent: 'center',
 })

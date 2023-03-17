@@ -2,10 +2,10 @@ import { styled } from "../../../../../../lib/stitches.config";
 import * as Checkbox from '@radix-ui/react-checkbox';
 
 export const TaskListTable = styled('table', {
-    width: '50%',
     borderCollapse: 'separate',
     borderSpacing: '0 0.5rem',
     marginTop: '1.5rem',
+    width: '100%',
 
     'td': {
         padding: '1.25rem 0.5rem',
@@ -23,10 +23,6 @@ export const TaskListTable = styled('table', {
             'borderBottomRightRadius': 6,
         }
     },
-
-    '@media (max-width: 1100px)': {
-        width: '90%',
-    }
 })
 
 export const CheckboxContainer = styled(Checkbox.Root, {
@@ -81,14 +77,9 @@ export const TaskText = styled('p', {
 })
 
 export const PaginationContainer = styled('div', {
-    width: '50%',
     display: 'flex',
     alignItems: 'center',
     gap: '1rem',
-
-    '@media (max-width: 1100px)': {
-        width: '90%',
-    }
 })
 
 export const PaginationButtonContainer = styled('div', {

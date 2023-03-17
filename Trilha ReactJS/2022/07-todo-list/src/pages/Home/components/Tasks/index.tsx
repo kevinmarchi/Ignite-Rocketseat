@@ -1,21 +1,34 @@
-import { Check, ClipboardText, Trash } from "phosphor-react";
-import { useContext, useState } from "react";
-import { CheckboxContainer, Container, TaskCounter, TaskListEmpty, TaskListTable, TaskProgress, TaskText, TrashButton } from "./styles";
-import * as Checkbox from '@radix-ui/react-checkbox';
+import { ClipboardText } from "phosphor-react";
+import { useContext, useEffect } from "react";
+import { Container, TaskCounter, TaskListEmpty, TaskProgress } from "./styles";
 import { TaskContext } from "../../../../contexts/TaskContext";
 import { Table } from "./components/Table";
+
+interface Task {
+    id: string;
+    description: string;
+    complete: boolean;
+}
 
 export function Tasks() {
     const {tasks, setTasks} = useContext(TaskContext);
 
-    function handleDeleteTask(taskToDelete : any) {
+    console.log('aqui é na parte principal')
+    console.log(tasks)
+    console.log('-------------------------------')
+
+
+    function handleDeleteTask(taskToDelete : Task) {
+
         const tasksWithoutDeleted = tasks.filter((task) => {
-            return task !== taskToDelete
+            return task.id !== taskToDelete.id
         })
-        setTasks(tasksWithoutDeleted)
+        console.log('aqui é dentro da função')
+        console.log(tasks)
+        // setTasks(tasksWithoutDeleted)
     }
 
-    function handleCompleteTask(checked : boolean, taskToUpdate: any) {
+    function handleCompleteTask(checked : boolean, taskToUpdate: Task) {
         setTasks(tasks.map((task) => {
             if (task.id === taskToUpdate.id) {
                 task.complete = checked
@@ -58,28 +71,7 @@ export function Tasks() {
                         <p>Crie tarefas e organize seus itens a fazer</p>
                     </TaskListEmpty>
                 :
-                    <Table props={{handleCompleteTask, handleDeleteTask, countTasks}} />
-                    // <TaskListTable>
-                    //     <tbody>
-                    //         {tasks.map((task) => {
-                    //             return (
-                    //                 <tr key={task.id}>
-                    //                     <td width={"20px"}>
-                                            // <CheckboxContainer checked={task.complete} onCheckedChange={(checked) => handleCompleteTask(checked === true, task)}>
-                                            //     <Checkbox.Indicator asChild>
-                                            //         <Check />
-                                            //     </Checkbox.Indicator>
-                                            // </CheckboxContainer>
-                    //                     </td>
-                    //                     <td><TaskText complete={task.complete}>{task.description}</TaskText></td>
-                    //                     <td width={"20px"}>
-                    //                         <TrashButton onClick={() => handleDeleteTask(task)}><Trash /></TrashButton>
-                    //                     </td>
-                    //                 </tr>
-                    //             )
-                    //         })}
-                    //     </tbody>
-                    // </TaskListTable>
+                    <Table {...{handleCompleteTask, handleDeleteTask}}  />
             }
         </Container>
     )

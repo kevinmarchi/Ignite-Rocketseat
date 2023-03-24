@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
+export const MainContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+`
+
 export const Container = styled.div`
-    padding: 1.5rem 25rem;
+    padding: 1.5rem 0;
+    width: 70%;
 
     display: flex;
     justify-content: space-between;

@@ -2,14 +2,37 @@ import styled from "styled-components";
 import backgroundImg from '../../assets/background.png'
 
 export const ContainerImage = styled.div`
+    width: 100vw;
     background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url(${backgroundImg});
+    
+    display: flex;
+    justify-content: center;
+`
+
+export const MainContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(1rem);
 `
 
 export const Container = styled.div`
-    padding: 1.5rem 25rem;
-    backdrop-filter: blur(1rem);
+    padding: 1.5rem 0;
+    width: 70%;    
 
     display: flex;
+    align-items: flex-end;
+
+    img {
+        width: 30rem;
+        height: 20rem;
+
+        @media (max-width: 1300px) {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+    }
 `
 
 export const ContentContainer = styled.div`
@@ -21,6 +44,11 @@ export const ContentContainer = styled.div`
         font-size: 3rem;
         line-height: 4rem;
         color: ${props => props.theme["base-title"]};
+
+        @media (max-width: 680px) {
+            font-size: 1.6rem;
+            line-height: 2rem;
+        }
     };
 
     h4 {
@@ -28,6 +56,16 @@ export const ContentContainer = styled.div`
         font-size: 1.25rem;
         line-height: 1.6rem;
         color: ${props => props.theme["base-subtitle"]};
+
+        @media (max-width: 680px) {
+            margin-top: 1rem;
+            font-size: 1rem;
+            line-height: 1rem;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        width: 100%;
     }
 `
 
@@ -46,6 +84,11 @@ export const VantageItem = styled.div`
     p {
         align-self: center;
     };
+
+    @media (max-width: 680px) {
+        height: 2rem;
+        font-size: 0.8rem;
+    }
 `
 
 interface VantageIconProps {
@@ -65,8 +108,15 @@ export const VantageIconBox = styled.div<VantageIconProps>`
     }
 `
 
+export const MainCatalogContainer = styled.div`
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+`
+
 export const CatalogContainer = styled.div`
-    padding: 1.5rem 25rem;
+    padding: 1.5rem 0;
+    width: 70%;
 
     h2 {
         color: ${props => props.theme["base-subtitle"]};
@@ -76,133 +126,8 @@ export const CatalogContainer = styled.div`
     }
 `
 
-export const Card = styled.div`
-    background-color: ${props => props.theme["base-card"]};
-    padding: 1rem;
-    border-top-right-radius: 40px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 10px;
-    width: 16rem;
-
+export const CardContainer = styled.div`
     display: flex;
-    flex-direction: column;
-`
-
-export const CardHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-
-    img {
-        width: 7.5rem;
-        height: 7.5rem;
-        margin-top: -2rem;
-    }
-
-    span {
-        background-color: ${props => props.theme["yellow-light"]};
-        color: ${props => props.theme["yellow-dark"]};
-        border-radius: 40px;
-        padding: 0.5rem;
-        font-weight: bold;
-        font-size: 0.8rem;
-    }
-`
-
-export const CardContent = styled.div `
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    gap: 0.5rem;
-
-    h3 {
-        font-family: 'Baloo 2';
-        color: ${props => props.theme["base-subtitle"]};
-        font-size: 1.4rem;
-    }
-
-    p {
-        color: ${props => props.theme["base-label"]};
-        text-indent: 15px;
-    }
-`
-
-export const CardFooter = styled.div`
-    display: flex;
-    justify-content: space-between;
-
-    p {
-        color: ${props => props.theme["base-label"]};
-
-        span {
-            color: ${props => props.theme["base-subtitle"]};
-            font-family: 'Baloo 2';
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-    }
-
-    form {
-        display: flex;
-        gap: 0.5rem;
-        
-        & > input {
-            width: 3rem;
-        }
-
-        & > button {
-            all: unset;
-            border-radius: 7px;
-            padding: 0.5rem;
-            cursor: pointer;
-            color: ${props => props.theme["white"]};
-            background-color: ${props => props.theme["purple-dark"]};
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            svg {
-                background-color: ${props => props.theme["purple-dark"]};
-            }
-        }
-    }
-`
-
-export const IncreaseInput = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: ${props => props.theme["base-button"]};
-    border-radius: 10px;
-    padding: 0.3rem;
-    
-    span {
-        all: unset;
-        color: ${props => props.theme.purple};
-        font-size: 1.5rem;
-
-        svg {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-    input {
-        all: unset;
-        text-align: center;
-        width: 40px;
-    }
-
-    input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
+    flex-wrap: wrap;
+    gap: 2rem;
 `

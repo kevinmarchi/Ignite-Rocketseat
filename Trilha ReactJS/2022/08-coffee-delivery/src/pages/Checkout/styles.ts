@@ -12,21 +12,29 @@ export const Container = styled.div`
     width: 70%;
 
     display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
 
     h4 {
         font-family: 'Baloo 2';
+        font-size: 1.5rem;
         color: ${props => props.theme["base-subtitle"]};
     }
 `
 
 export const InformationContainer = styled.div`
-    border-radius: 7px;
+    width: 60%;
+
+    @media (max-width: 1300px) {
+        width: 100%;
+    }
 `
 
 export const InformationCard = styled.div`
     padding: 2rem;
     margin-top: 2rem;
     background-color: ${props => props.theme["base-card"]};
+    border-radius: 7px;
 
     h5 {
         font-weight: 400;
@@ -92,4 +100,162 @@ export const RadioGroupMain = styled(RadioGroup.Root)`
     }
 `
 
+export const CoffeeSelectedContainer = styled.div`
+    width: calc(40% - 3rem);
+
+    @media (max-width: 1300px) {
+        width: 100%;
+    }
+`
+
+export const ConfirmCard = styled.div`
+    border-top-right-radius: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 10px;
+
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: ${props => props.theme["base-card"]};
+
+    h5 {
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.25rem;
+    }
+
+    & > p {
+        font-size: 0.8rem;
+        text-indent: 25px;
+        margin-bottom: 2rem;
+    }
+`
+
+export const CoffeeSelected = styled.div`
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.5fr;
+    grid-gap: 2rem;
+
+    border-bottom: solid 1px ${props => props.theme["base-button"]};
+    padding: 1rem 0;
+`
+
+export const CoffeeSelectedImageContainer = styled.div`
+    margin-top: -0.5rem;
+    img {
+        width: 4rem;
+        height: 4rem;
+    }
+`
+
+export const CoffeeSelectedContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+`
+
+export const ButtonContainer = styled.div`
+    display: flex;
+    gap: 0.2rem;
+
+    & > button {
+        all: unset;
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 7px;
+        background-color: ${props => props.theme["base-button"]};
+        color: ${props => props.theme["base-text"]};
+        cursor: pointer;
+        display: flex;
+        gap: 0.1rem;
+
+        svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: ${props => props.theme.purple};
+        }
+    }
+`
+
+export const IncreaseInput = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${props => props.theme["base-button"]};
+    border-radius: 7px;
+    padding: 0.3rem;
+    
+    button {
+        all: unset;
+        color: ${props => props.theme.purple};
+        font-size: 1.5rem;
+
+        svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    input {
+        all: unset;
+        text-align: center;
+        width: 40px;
+    }
+
+    input[type='number']::-webkit-inner-spin-button, input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+`
+
+export const CoffeeSelectedTotalizerContainer = styled.div`
+    h5 {
+        font-weight: bold;
+        float: right;
+    }
+`
+
+export const TotalizersContainer = styled.div`
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    grid-gap: 1rem;
+    margin-top: 3rem;
+
+    color: ${props => props.theme["base-text"]};
+
+    span {
+        font-size: 0.8rem;
+    }
+
+    p + p {
+        text-align: right;
+    }
+
+    span + span {
+        text-align: right;
+    }
+
+    h5 + h5 {
+        text-align: right;
+    }
+`
+
+export const ConfirmButton = styled.div`
+    all: unset;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    background-color: ${props => props.theme["yellow"]};
+    color: ${props => props.theme["white"]};
+    cursor: pointer;
+    
+`
 

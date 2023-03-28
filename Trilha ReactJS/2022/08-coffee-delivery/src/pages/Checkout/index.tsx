@@ -1,12 +1,16 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
-import { Container, FormInput, FormInputContainer, FormRow, InformationCard, InformationContainer, MainContainer, RadioGroupMain } from "./styles";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
+import { ButtonContainer, CoffeeSelected, CoffeeSelectedContainer, CoffeeSelectedContentContainer, CoffeeSelectedImageContainer, CoffeeSelectedTotalizerContainer, ConfirmButton, ConfirmCard, Container, FormInput, FormInputContainer, FormRow, IncreaseInput, InformationCard, InformationContainer, MainContainer, RadioGroupMain, TotalizersContainer } from "./styles";
 import { defaultTheme } from "../../styles/themes/default";
 import { useForm } from "react-hook-form";
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import coffeImg from '../../assets/coffee-expresso.png'
+import { useState } from "react";
 
 export function Checkout() {
 
     const {register, handleSubmit} = useForm()
+
+    const [amount, setAmount] = useState(1)
 
     function handleCreateNewOrder(data: any) {
         console.log(data);
@@ -64,7 +68,39 @@ export function Checkout() {
                     </InformationCard>
                 </InformationContainer>
 
-                <h4>Cafés selecionados</h4>
+                <CoffeeSelectedContainer>
+                    <h4>Cafés selecionados</h4>
+                    <ConfirmCard>
+                        <CoffeeSelected>
+                            <CoffeeSelectedImageContainer>
+                                <img src={coffeImg} alt="" />
+                            </CoffeeSelectedImageContainer>
+                            <CoffeeSelectedContentContainer>
+                                <p>Expresso Tradicional</p>
+                                <ButtonContainer>
+                                    <IncreaseInput>
+                                        <button onClick={() => setAmount(amount - 1)}><Minus size={15} weight="bold" /></button>
+                                        <input type="number" value={amount} disabled />
+                                        <button onClick={() => setAmount(amount + 1)}><Plus size={15} weight="bold" /></button>
+                                    </IncreaseInput>
+                                    <button><Trash />REMOVER</button>
+                                </ButtonContainer>
+                            </CoffeeSelectedContentContainer>
+                            <CoffeeSelectedTotalizerContainer>
+                                <h5>R$ 9,90</h5>
+                            </CoffeeSelectedTotalizerContainer>
+                        </CoffeeSelected>
+                        <TotalizersContainer>
+                            <p>Total de Itens</p>
+                            <p>R$ 29,70</p>
+                            <span>Entrega</span>
+                            <span>R$ 3,50</span>
+                            <h4>Total</h4>
+                            <h4>R$ 33,20</h4>
+                        </TotalizersContainer>
+                        <ConfirmButton><b>CONFIRMAR PEDIDO</b></ConfirmButton>
+                    </ConfirmCard>
+                </CoffeeSelectedContainer>
             </Container>
         </MainContainer>
     )

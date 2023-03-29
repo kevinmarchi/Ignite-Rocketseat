@@ -61,6 +61,13 @@ export const FormRow = styled.div`
         margin-left: 1rem;
     }
 
+    @media (max-width: 800px) {
+        input + input {
+            margin-left: 0;
+            margin-top: 1rem;
+        }   
+    }
+
 `
 
 interface FormInputProps {
@@ -72,10 +79,16 @@ export const FormInput = styled.input<FormInputProps>`
     background-color: ${props => props.theme["base-input"]};
     border: solid 1px ${props => props.theme["base-button"]};
     width: calc(${props => props.width});
+
+    @media (max-width: 800px) {
+        width: 100%;
+    }
 `
 
 export const RadioGroupMain = styled(RadioGroup.Root)`
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
 
     button {
@@ -132,16 +145,20 @@ export const ConfirmCard = styled.div`
 `
 
 export const CoffeeSelected = styled.div`
-    display: grid;
-    grid-template-columns: 0.2fr 1fr 0.5fr;
-    grid-gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
 
     border-bottom: solid 1px ${props => props.theme["base-button"]};
     padding: 1rem 0;
+
+    @media (max-width: 480px) {
+        justify-content: center;
+    }
 `
 
 export const CoffeeSelectedImageContainer = styled.div`
     margin-top: -0.5rem;
+    width: 80px;
     img {
         width: 4rem;
         height: 4rem;
@@ -152,6 +169,11 @@ export const CoffeeSelectedContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    width: calc(100% - (75px + 80px));
+
+    @media (max-width: 480px) {
+        width: auto;
+    }
 `
 
 export const ButtonContainer = styled.div`
@@ -190,6 +212,7 @@ export const IncreaseInput = styled.div`
         all: unset;
         color: ${props => props.theme.purple};
         font-size: 1.5rem;
+        box-sizing: border-box;
 
         svg {
             display: flex;
@@ -212,9 +235,17 @@ export const IncreaseInput = styled.div`
 `
 
 export const CoffeeSelectedTotalizerContainer = styled.div`
+    width: 75px;
     h5 {
         font-weight: bold;
         float: right;
+    }
+
+    @media (max-width: 480px) {
+        h5 {
+            margin-top: 0.5rem;
+            float: left;
+        }
     }
 `
 
@@ -239,8 +270,14 @@ export const TotalizersContainer = styled.div`
         text-align: right;
     }
 
-    h5 + h5 {
+    h4 + h4 {
         text-align: right;
+    }
+
+    @media (max-width: 370px) {
+        h4 {
+            font-size: 1.3rem;
+        }
     }
 `
 

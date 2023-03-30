@@ -95,9 +95,10 @@ export const CardFooter = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: 0.2s background-color;
 
-            svg {
-                background-color: ${props => props.theme["purple-dark"]};
+            &:hover {
+                background-color: ${props => props.theme["purple"]};
             }
         }
     }
@@ -111,10 +112,11 @@ export const IncreaseInput = styled.div`
     border-radius: 10px;
     padding: 0.3rem;
     
-    button {
+    span {
         all: unset;
         color: ${props => props.theme.purple};
         font-size: 1.5rem;
+        cursor: pointer;
 
         svg {
             display: flex;

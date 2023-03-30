@@ -3,14 +3,14 @@ import { ButtonContainer, CoffeeSelected, CoffeeSelectedContainer, CoffeeSelecte
 import { defaultTheme } from "../../styles/themes/default";
 import { useForm } from "react-hook-form";
 import * as RadioGroup from '@radix-ui/react-radio-group';
-import coffeImg from '../../assets/coffee-expresso.png'
-import { useState } from "react";
+import { useContext } from "react";
+import { ShopContext } from "../../contexts/ShopContext";
+import { Card } from "./components/Card";
 
 export function Checkout() {
 
     const {register, handleSubmit} = useForm()
-
-    const [amount, setAmount] = useState(1)
+    const {card} = useContext(ShopContext)
 
     function handleCreateNewOrder(data: any) {
         console.log(data);
@@ -72,23 +72,11 @@ export function Checkout() {
                     <h4>Cafés selecionados</h4>
                     <ConfirmCard>
                         <CoffeeSelected>
-                            <CoffeeSelectedImageContainer>
-                                <img src={coffeImg} alt="" />
-                            </CoffeeSelectedImageContainer>
-                            <CoffeeSelectedContentContainer>
-                                <p>Expresso Tradicional</p>
-                                <ButtonContainer>
-                                    <IncreaseInput>
-                                        <button onClick={() => setAmount(amount - 1)}><Minus size={15} weight="bold" /></button>
-                                        <input type="number" value={amount} disabled />
-                                        <button onClick={() => setAmount(amount + 1)}><Plus size={15} weight="bold" /></button>
-                                    </IncreaseInput>
-                                    <button><Trash />REMOVER</button>
-                                </ButtonContainer>
-                            </CoffeeSelectedContentContainer>
-                            <CoffeeSelectedTotalizerContainer>
-                                <h5>R$ 9,90</h5>
-                            </CoffeeSelectedTotalizerContainer>
+                            {card.map(itemCard => {
+                                return (
+                                    <Card key={itemCard.id} itemCard={itemCard}></Card>
+                                )
+                            })}
                         </CoffeeSelected>
                         <TotalizersContainer>
                             <p>Total de Itens</p>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
@@ -36,7 +37,7 @@ export const Location = styled.span`
     }
 `
 
-export const Cart = styled.button`
+export const Cart = styled(Link)`
     display: flex;
     all: unset;
     border-radius: 7px;

@@ -146,10 +146,7 @@ export const ConfirmCard = styled.div`
 
 export const CoffeeSelected = styled.div`
     display: flex;
-    flex-wrap: wrap;
-
-    border-bottom: solid 1px ${props => props.theme["base-button"]};
-    padding: 1rem 0;
+    flex-wrap: wrap;    
 
     @media (max-width: 480px) {
         justify-content: center;

@@ -43,12 +43,22 @@ export const ButtonContainer = styled.div`
         cursor: pointer;
         display: flex;
         gap: 0.1rem;
+        transition: 0.2s background-color;
 
         svg {
             display: flex;
             justify-content: center;
             align-items: center;
             color: ${props => props.theme.purple};
+        }
+    }
+
+    & > button:hover {
+        background-color: ${props => props.theme["base-hover"]};
+        color: ${props => props.theme["base-subtitle"]};
+
+        svg {
+            color: ${props => props.theme["purple-dark"]};
         }
     }
 `
@@ -66,6 +76,7 @@ export const IncreaseInput = styled.div`
         color: ${props => props.theme.purple};
         font-size: 1.5rem;
         box-sizing: border-box;
+        cursor: pointer;
 
         svg {
             display: flex;

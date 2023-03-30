@@ -1,9 +1,9 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
-import { ButtonContainer, CoffeeSelected, CoffeeSelectedContainer, CoffeeSelectedContentContainer, CoffeeSelectedImageContainer, CoffeeSelectedTotalizerContainer, ConfirmButton, ConfirmCard, Container, FormInput, FormInputContainer, FormRow, IncreaseInput, InformationCard, InformationContainer, MainContainer, RadioGroupMain, TotalizersContainer } from "./styles";
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { CoffeeSelected, CoffeeSelectedContainer, ConfirmButton, ConfirmCard, Container, FormInput, FormInputContainer, FormRow, InformationCard, InformationContainer, MainContainer, RadioGroupMain, TotalizersContainer } from "./styles";
 import { defaultTheme } from "../../styles/themes/default";
 import { useForm } from "react-hook-form";
 import * as RadioGroup from '@radix-ui/react-radio-group';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../contexts/ShopContext";
 import { Card } from "./components/Card";
 
@@ -11,10 +11,17 @@ export function Checkout() {
 
     const {register, handleSubmit} = useForm()
     const {card} = useContext(ShopContext)
+    const [totalItem, setTotalItem] = useState(0)
 
     function handleCreateNewOrder(data: any) {
         console.log(data);
     }
+
+    useEffect(() => {
+        setTotalItem(card.reduce((acc, itemCard,) => {
+            return acc + (itemCard.amount * itemCard.price)
+        }, 0))
+    }, [card])
 
     return (
         <MainContainer>
@@ -80,11 +87,23 @@ export function Checkout() {
                         </CoffeeSelected>
                         <TotalizersContainer>
                             <p>Total de Itens</p>
-                            <p>R$ 29,70</p>
+                            <p>R$ &nbsp;
+                                {new Intl.NumberFormat('pt-BR', {
+                                    style: 'decimal',
+                                    currency: 'BRL',
+                                    minimumFractionDigits: 2
+                                }).format(totalItem)}
+                            </p>
                             <span>Entrega</span>
                             <span>R$ 3,50</span>
                             <h4>Total</h4>
-                            <h4>R$ 33,20</h4>
+                            <h4>R$ &nbsp;
+                                {new Intl.NumberFormat('pt-BR', {
+                                    style: 'decimal',
+                                    currency: 'BRL',
+                                    minimumFractionDigits: 2
+                                }).format(totalItem + 3.5)}
+                            </h4>
                         </TotalizersContainer>
                         <ConfirmButton><b>CONFIRMAR PEDIDO</b></ConfirmButton>
                     </ConfirmCard>

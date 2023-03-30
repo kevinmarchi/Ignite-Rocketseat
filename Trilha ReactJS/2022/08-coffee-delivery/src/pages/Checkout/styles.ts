@@ -96,6 +96,7 @@ export const RadioGroupMain = styled(RadioGroup.Root)`
         font-size: 0.75rem;
         padding: 1rem;
         background-color: ${props => props.theme["base-button"]};
+        border: solid 1px ${props => props.theme["base-button"]};
         border-radius: 10px;
         color: ${props => props.theme["base-text"]};
         width: 10rem;
@@ -110,6 +111,17 @@ export const RadioGroupMain = styled(RadioGroup.Root)`
             justify-content: center;
             align-items: center;
         }
+    }
+
+    button:hover {
+        background-color: ${props => props.theme["base-hover"]};
+        border: solid 1px ${props => props.theme["base-hover"]};
+        color: ${props => props.theme["base-subtitle"]};
+    }
+
+    button[aria-checked=true] {
+        background-color: ${props => props.theme["purple-light"]};
+        border-color: ${props => props.theme.purple};
     }
 `
 
@@ -290,6 +302,11 @@ export const ConfirmButton = styled.div`
     background-color: ${props => props.theme["yellow"]};
     color: ${props => props.theme["white"]};
     cursor: pointer;
+    transition: 0.2s background-color;
+
+    &:hover {
+        background-color: ${props => props.theme["yellow-dark"]};
+    }
     
 `
 

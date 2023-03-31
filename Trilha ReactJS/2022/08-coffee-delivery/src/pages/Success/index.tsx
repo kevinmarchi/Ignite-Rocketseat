@@ -1,8 +1,17 @@
 import { CurrencyDollar, MapPin, Timer } from "phosphor-react";
 import { Container, ImageContainer, MainContainer, OrderContainer, OrderInfo, OrderInfoContainerBorder, OrderItem, VantageIconBox } from "./styles";
 import deliveredImage from '../../assets/delivered.png'
+import { useContext, useEffect } from "react";
+import { ShopContext } from "../../contexts/ShopContext";
 
 export function Success() {
+
+    const {orderInformation, setCard} = useContext(ShopContext)
+
+    useEffect(() => {
+        setCard([])
+    }, [])
+
     return (
         <MainContainer>
             <Container>
@@ -17,8 +26,8 @@ export function Success() {
                                     <MapPin weight="fill" />
                                 </VantageIconBox>
                                 <span>
-                                    <p>Entrega em <b>Rua Severino Lenzi, 5958</b></p>
-                                    <p>Canta Galo - Rio do Sul, SC</p>
+                                    <p>Entrega em <b>Rua {orderInformation.rua}, {orderInformation.numero}</b></p>
+                                    <p>{orderInformation.bairro} - {orderInformation.cidade}, {orderInformation.uf}</p>
                                 </span>
                             </OrderItem>
                             <OrderItem>
@@ -36,7 +45,7 @@ export function Success() {
                                 </VantageIconBox>
                                 <span>
                                     <p>Pagamento na entrega</p>
-                                    <p><b>Cartão de Crédito</b></p>
+                                    <p><b>{orderInformation.pagamento}</b></p>
                                 </span>
                             </OrderItem>
                         </OrderInfo>

@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
     justify-content: center;
 `
 
-export const Container = styled.div`
+export const Container = styled.form`
     padding: 1.5rem 0;
     width: 70%;
 
@@ -42,7 +42,7 @@ export const InformationCard = styled.div`
         line-height: 1.25rem;
     }
 
-    p {
+    & > p {
         font-size: 0.8rem;
         text-indent: 25px;
         margin-bottom: 2rem;
@@ -78,7 +78,14 @@ export const FormInput = styled.input<FormInputProps>`
     padding: 0.8rem;
     background-color: ${props => props.theme["base-input"]};
     border: solid 1px ${props => props.theme["base-button"]};
+    color: ${props => props.theme["base-text"]};
     width: calc(${props => props.width});
+
+    &:focus {
+        box-shadow: 0 0 0 0;
+        outline: 0;
+        border: solid 1px ${props => props.theme["yellow-dark"]};
+    }
 
     @media (max-width: 800px) {
         width: 100%;
@@ -290,7 +297,7 @@ export const TotalizersContainer = styled.div`
     }
 `
 
-export const ConfirmButton = styled.div`
+export const ConfirmButton = styled.button`
     all: unset;
     box-sizing: border-box;
     margin-top: 2rem;
@@ -310,3 +317,7 @@ export const ConfirmButton = styled.div`
     
 `
 
+export const ErrorMessage = styled.p`
+    font-size: 0.7rem;
+    color: red;
+`

@@ -16,7 +16,12 @@ interface ItemCardProps {
 }
 
 export function Card({itemCard}: ItemCardProps) {
-    const image = `src/assets/${itemCard.image}`
+    const getAssetSrc = (name: string) => {
+        const path = `/src/assets/${name}`;
+        const modules = import.meta.glob("/src/assets/*", { eager: true });
+        const mod = modules[path] as { default: string };
+        return mod.default;
+    };
     const {card, setCard} = useContext(ShopContext)
 
     function handleRemoveItemCard(itemCard: CardItem) {
@@ -41,7 +46,7 @@ export function Card({itemCard}: ItemCardProps) {
     return (  
         <Container key={itemCard.id}>
             <CoffeeSelectedImageContainer>
-                <img src={image} alt="" />
+                <img src={getAssetSrc(itemCard.image)} alt="" />
             </CoffeeSelectedImageContainer>
             <CoffeeSelectedContentContainer>
                 <p>{itemCard.name}</p>

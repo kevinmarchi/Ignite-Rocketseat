@@ -9,7 +9,7 @@ export function App() {
 
   return (  
     <ThemeProvider theme={defaultTheme}>
-        <BrowserRouter>
+        <BrowserRouter basename="/coffee-delivery">
           <ShopProvider>
               <Router />
           </ShopProvider>

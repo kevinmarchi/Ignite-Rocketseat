@@ -42,12 +42,18 @@ export function Card({product}: CardProps) {
     }
 
     const [amount, setAmount]= useState(1)
-    const image = `src/assets/${product.image}`
+
+    const getAssetSrc = (name: string) => {
+        const path = `/src/assets/${name}`;
+        const modules = import.meta.glob("/src/assets/*", { eager: true });
+        const mod = modules[path] as { default: string };
+        return mod.default;
+    };
     
     return (
         <CardContainer>
             <CardHeader>
-                <img src={image} alt="" />
+                <img src={getAssetSrc(product.image)} alt="" />
                 <TagContainer>
                     {product.tags.map((tag) => {
                         return (

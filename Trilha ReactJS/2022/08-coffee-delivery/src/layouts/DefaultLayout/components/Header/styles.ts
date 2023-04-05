@@ -38,8 +38,8 @@ export const Location = styled.span`
 `
 
 export const Cart = styled(Link)`
-    display: flex;
     all: unset;
+    display: flex;
     border-radius: 7px;
     padding: 0.5rem;
     cursor: pointer;
@@ -49,4 +49,20 @@ export const Cart = styled(Link)`
     svg {
         background-color: ${props => props.theme["yellow-light"]};
     }
+`
+
+export const CartContainer = styled.span`
+    display: flex;
+`
+
+export const AmountCardItens = styled.span`
+    position: absolute;
+    background-color: ${props => props.theme["yellow-dark"]};
+    color: ${props => props.theme.white};
+    font-weight: bold;
+    border-radius: 9999px;
+    padding: 0.3rem;
+    font-size: 0.6rem;
+    margin-left: 2rem;
+    margin-top: -5px;
 `

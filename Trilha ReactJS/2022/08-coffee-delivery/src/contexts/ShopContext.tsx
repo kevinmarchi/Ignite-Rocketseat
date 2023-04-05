@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 
-interface CardItem {
+export interface CardItem {
     id: number;
     tags: Array<string>;
     name: string;

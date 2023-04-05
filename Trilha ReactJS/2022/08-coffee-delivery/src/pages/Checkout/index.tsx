@@ -10,7 +10,18 @@ import { useNavigate } from "react-router-dom";
 
 export function Checkout() {
 
-    const {register, handleSubmit, control, formState: {errors}} = useForm()
+    const {register, handleSubmit, control, formState: {errors}} = useForm({
+        defaultValues: {
+            cep: '',
+            rua: '',
+            numero: '',
+            bairro: '',
+            cidade: '',
+            uf: '',
+            complemento: '',
+            pagamento: 'Dinheiro'
+        }
+    })
     const {card, setOrderInformation} = useContext(ShopContext)
     const [totalItem, setTotalItem] = useState(0)
     const navigate = useNavigate()
@@ -68,7 +79,7 @@ export function Checkout() {
                                 name='pagamento'
                                 render={({field}) => {
                                     return (
-                                        <RadioGroupMain onValueChange={field.onChange} value={field.value} defaultValue={"Dinheiro"}>
+                                        <RadioGroupMain onValueChange={field.onChange} value={field.value}>
                                             <RadioGroup.Item value="Cartão de Crédito">
                                                 <CreditCard size={15} />
                                                 <span>Cartão de Crédito</span>

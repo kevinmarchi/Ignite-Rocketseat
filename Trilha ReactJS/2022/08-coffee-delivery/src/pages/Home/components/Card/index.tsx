@@ -72,13 +72,13 @@ export function Card({product}: CardProps) {
                 </p>
                 <form onSubmit={handleSubmit(handleAddItensCard)}>
                     <IncreaseInput>
-                        <span onClick={() => setAmount(amount - 1)}><Minus size={20} weight="bold" /></span>
                         <input type="hidden" defaultValue={product.id} {...register("id")} />
                         <input type="hidden" defaultValue={product.tags} {...register("tags")} />
                         <input type="hidden" defaultValue={product.name} {...register("name")} />
                         <input type="hidden" defaultValue={product.description} {...register("description")} />
                         <input type="hidden" defaultValue={product.price} {...register("price")} />
                         <input type="hidden" defaultValue={product.image} {...register("image")} />
+                        <span onClick={() => amount > 1 && setAmount(amount - 1)}><Minus size={20} weight="bold" /></span>
                         <input type="text" value={amount} onChange={() => {setAmount(amount)}} />
                         <span onClick={() => setAmount(amount + 1)}><Plus size={20} weight="bold" /></span>
                     </IncreaseInput>

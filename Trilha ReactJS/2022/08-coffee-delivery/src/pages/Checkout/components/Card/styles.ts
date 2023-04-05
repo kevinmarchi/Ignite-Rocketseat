@@ -7,6 +7,12 @@ export const Container = styled.div`
     border-bottom: solid 1px ${props => props.theme["base-button"]};
     padding-bottom: 1rem;
     margin-bottom: 2em;
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
 `
 
 export const CoffeeSelectedImageContainer = styled.div`
@@ -33,7 +39,7 @@ export const ButtonContainer = styled.div`
     display: flex;
     gap: 0.2rem;
 
-    & > button {
+    & > span {
         all: unset;
         padding: 0.5rem;
         font-size: 0.75rem;
@@ -53,7 +59,7 @@ export const ButtonContainer = styled.div`
         }
     }
 
-    & > button:hover {
+    & > span:hover {
         background-color: ${props => props.theme["base-hover"]};
         color: ${props => props.theme["base-subtitle"]};
 
@@ -71,7 +77,7 @@ export const IncreaseInput = styled.div`
     border-radius: 7px;
     padding: 0.3rem;
     
-    button {
+    span {
         all: unset;
         color: ${props => props.theme.purple};
         font-size: 1.5rem;

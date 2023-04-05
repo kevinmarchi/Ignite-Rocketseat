@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash } from "phosphor-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CardItem, ShopContext } from "../../../../contexts/ShopContext";
 import { ButtonContainer, CoffeeSelectedContentContainer, CoffeeSelectedImageContainer, CoffeeSelectedTotalizerContainer, Container, IncreaseInput } from "./styles";
 
 interface ItemCardProps {
@@ -15,8 +16,27 @@ interface ItemCardProps {
 }
 
 export function Card({itemCard}: ItemCardProps) {
-    const [amount, setAmount] = useState(itemCard.amount)
     const image = `src/assets/${itemCard.image}`
+    const {card, setCard} = useContext(ShopContext)
+
+    function handleRemoveItemCard(itemCard: CardItem) {
+        const newCards = card.filter((value) => {
+            return value.id !== itemCard.id
+        }) 
+
+        setCard(newCards)
+    }
+
+    function handleAlterAmountItem(itemCard : CardItem, amount : number) {
+        const newCards = card.map((cardItem) => {
+            if (cardItem.id === itemCard.id) {
+                cardItem.amount = amount
+            }
+            return cardItem
+        })
+
+        setCard(newCards)
+    }
 
     return (  
         <Container key={itemCard.id}>
@@ -27,11 +47,11 @@ export function Card({itemCard}: ItemCardProps) {
                 <p>{itemCard.name}</p>
                 <ButtonContainer>
                     <IncreaseInput>
-                        <button onClick={() => setAmount(amount - 1)}><Minus size={15} weight="bold" /></button>
-                        <input type="number" value={amount} disabled />
-                        <button onClick={() => setAmount(amount + 1)}><Plus size={15} weight="bold" /></button>
+                        <span onClick={() => itemCard.amount > 1 && handleAlterAmountItem(itemCard, (itemCard.amount - 1))}><Minus size={15} weight="bold" /></span>
+                        <input type="number" value={itemCard.amount} disabled min={0} />
+                        <span onClick={() => handleAlterAmountItem(itemCard, (itemCard.amount + 1))}><Plus size={15} weight="bold" /></span>
                     </IncreaseInput>
-                    <button><Trash />REMOVER</button>
+                    <span onClick={() => {handleRemoveItemCard(itemCard)}}><Trash />REMOVER</span>
                 </ButtonContainer>
             </CoffeeSelectedContentContainer>
             <CoffeeSelectedTotalizerContainer>

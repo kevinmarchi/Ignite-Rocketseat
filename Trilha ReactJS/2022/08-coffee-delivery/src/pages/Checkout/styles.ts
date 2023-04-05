@@ -2,7 +2,6 @@ import styled from "styled-components";
 import * as RadioGroup from '@radix-ui/react-radio-group';
 
 export const MainContainer = styled.div`
-    width: 100vw;
     display: flex;
     justify-content: center;
 `

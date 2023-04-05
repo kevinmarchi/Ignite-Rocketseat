@@ -2,7 +2,6 @@ import styled from "styled-components";
 import backgroundImg from '../../assets/background.png'
 
 export const ContainerImage = styled.div`
-    width: 100vw;
     background-image: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8)), url(${backgroundImg});
     
     display: flex;
@@ -109,9 +108,9 @@ export const VantageIconBox = styled.div<VantageIconProps>`
 `
 
 export const MainCatalogContainer = styled.div`
-    width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: center;
 `
 
 export const CatalogContainer = styled.div`
@@ -130,4 +129,5 @@ export const CardContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    justify-content: center;
 `

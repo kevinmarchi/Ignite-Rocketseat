@@ -1,10 +1,11 @@
 import { Container } from "./styles";
 import logoImg from '../../../../assets/logo.png'
+import { Link } from "react-router-dom";
 
 export function Header() {
     return (
         <Container>
-            <img src={logoImg} alt="" />
+            <Link to={"/"}><img src={logoImg} alt="" /></Link>
         </Container>
     )
 }

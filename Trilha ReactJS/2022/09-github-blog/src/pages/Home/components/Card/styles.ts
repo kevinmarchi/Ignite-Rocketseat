@@ -29,7 +29,7 @@ export const CardHeader = styled.div`
         color: ${props => props.theme["base-title"]};
     }
 
-    span {
+    time {
         color: ${props => props.theme["base-span"]};
     }
 

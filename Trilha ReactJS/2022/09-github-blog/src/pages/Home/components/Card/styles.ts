@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled(Link)`
     padding: 1.5rem;
     background-color: ${props => props.theme["base-post"]};
     border: solid 3px ${props => props.theme["base-post"]};
     border-radius: 20px;
+    text-decoration: none;
     
     p {
         color: ${props => props.theme["base-text"]};

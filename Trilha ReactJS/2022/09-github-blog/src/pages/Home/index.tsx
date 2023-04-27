@@ -9,8 +9,9 @@ export function Home() {
 
     const [profileData, setProfileData] = useState({} as any)
     const [repositoryIssues, setRepositoryIssues] = useState({} as any)
-
     const [loading, setLoading] = useState(false)
+    const [searchField, setSearchField] = useState('');
+    const [repositoryIssuesFiltered, setRepositoryIssuesFiltered] = useState([])
 
     useEffect(() => {
         async function fetchData() {
@@ -28,9 +29,20 @@ export function Home() {
         fetchData();
     }, [])
 
+    function handleChangeSearchField(event: any) {
+        setSearchField(event.target.value)
+    }
+
     useEffect(() => {
         
-    }, [repositoryIssues])
+        const issueFiltered = repositoryIssues.items?.filter((issue: any) => {
+            if(issue.title.includes(searchField)) {
+                return issue
+            }
+        })
+        setRepositoryIssuesFiltered(issueFiltered)
+
+    }, [searchField])
 
     return (
         <>
@@ -59,16 +71,27 @@ export function Home() {
             <FilterContainer>
                 <FilterHeader>
                     <h3>Publicações</h3>
-                    <p>{repositoryIssues.total_count}</p>
+                    <p>
+                        {
+                            repositoryIssuesFiltered === undefined ? repositoryIssues.total_count : repositoryIssuesFiltered.length
+                        }
+                    </p>
                 </FilterHeader>
-                <input type="text" placeholder="Buscar Conteúdo" />
+                <input type="text" placeholder="Buscar Conteúdo" value={searchField} onChange={handleChangeSearchField} />
             </FilterContainer>
 
             <CardContainer>
-                {loading ? <Loader /> :
-                    repositoryIssues.items?.map((issue: any) => {
-                        return <Card key={issue.id} issue={issue}/>
-                    })
+                {loading ? <Loader /> : (
+                        repositoryIssuesFiltered === undefined ? (
+                            repositoryIssues.items?.map((issue: any) => {
+                                return <Card key={issue.id} issue={issue}/>
+                            })
+                        ) : (
+                            repositoryIssuesFiltered.map((issue: any) => {
+                                return <Card key={issue.id} issue={issue}/>
+                            })
+                        )                                         
+                    )
                 }
             </CardContainer>
         </>

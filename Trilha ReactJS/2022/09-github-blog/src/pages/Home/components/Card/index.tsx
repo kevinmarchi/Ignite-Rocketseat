@@ -9,7 +9,7 @@ export function Card({issue} : any) {
     });
 
     return (
-        <Container>
+        <Container to={`/post/${issue.number}`}>
             <CardHeader>
                 <h3>{issue.title}</h3>
                 <time title={publishedDateFormatted} dateTime={issue.updated_at}>

@@ -1,6 +1,6 @@
 import { ArrowLeft, Calendar, ChatCircle, GithubLogo, Share } from "phosphor-react"
 import { CodeText, PostContent, PostHeaderContainer, PostHeaderFooter, PostHeaderLinks, PostHeaderTitle } from "./styles"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 export function Post() {
 
@@ -9,6 +9,9 @@ export function Post() {
     foo = ‘bar’;    // foo is now a string
     foo = true;     // foo is now a boolean
     `
+
+    const {number} = useParams()
+    console.log(number)
 
     return (
         <>

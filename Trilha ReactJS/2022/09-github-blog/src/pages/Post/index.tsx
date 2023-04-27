@@ -1,8 +1,42 @@
 import { ArrowLeft, Calendar, ChatCircle, GithubLogo, Share } from "phosphor-react"
 import { CodeText, PostContent, PostHeaderContainer, PostHeaderFooter, PostHeaderLinks, PostHeaderTitle } from "./styles"
 import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { format, formatDistanceToNow } from "date-fns"
+import { ptBR } from "date-fns/locale"
+import { Loader } from "../../components/Loader"
+
+interface IssueData {
+    title: string;
+    html_url: string;
+    updated_at: string;
+    comments: string;
+    user: {
+        login: string;
+    };
+}
 
 export function Post() {
+
+    const [loading, setLoading] = useState(true)
+    const [issueData, setIssueData] = useState<IssueData>({} as IssueData)
+    const {issueNumber} = useParams()
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                setLoading(true)
+                await axios.get(`https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${issueNumber}`)
+                    .then(res => setIssueData(res.data))
+                setLoading(false)                
+            } catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        }
+        fetchData()
+    }, [])
 
     const code = `
     let foo = 42;   // foo is now a number
@@ -10,24 +44,38 @@ export function Post() {
     foo = true;     // foo is now a boolean
     `
 
-    const {number} = useParams()
-    console.log(number)
-
     return (
         <>
             <PostHeaderContainer>
-                <PostHeaderLinks>
-                    <Link to={"/"}><ArrowLeft weight="bold"/> VOLTAR</Link>
-                    <a href="/post" target="_blank">VER NO GITHUB <Share weight="bold" /></a>
-                </PostHeaderLinks>
-                <PostHeaderTitle>
-                    <h2>JavaScript data types and data structures</h2>
-                </PostHeaderTitle>
-                <PostHeaderFooter>
-                    <span title="Github"><GithubLogo /> cameronwll</span>
-                    <span title="Time ago"><Calendar /> Há 1 dia</span>
-                    <span title="Comments"><ChatCircle /> 5 comentários</span>
-                </PostHeaderFooter>
+                {(loading)  ? <Loader /> :
+                    <>
+                        <PostHeaderLinks>
+                            <Link to={"/"}><ArrowLeft weight="bold"/> VOLTAR</Link>
+                            <Link to={issueData.html_url} target="_blank" >VER NO GITHUB <Share weight="bold" /></Link>
+                        </PostHeaderLinks>
+                        <PostHeaderTitle>
+                            <h2>{issueData.title}</h2>
+                        </PostHeaderTitle>
+                        <PostHeaderFooter>
+                            <span title="Github"><GithubLogo /> {issueData.user?.login}</span>
+                            <span>
+                                <Calendar />
+                                <time 
+                                    title={format(new Date(issueData.updated_at), "d 'de' LLLL 'às' HH:mm'h'", {
+                                                locale: ptBR,
+                                          })}
+                                    dateTime={issueData.updated_at}
+                                >
+                                    {formatDistanceToNow(new Date(issueData.updated_at), {
+                                        locale: ptBR,
+                                        addSuffix: true
+                                    })}
+                                </time>
+                            </span>
+                            <span title="Comments"><ChatCircle /> {issueData.comments} comentários</span>
+                        </PostHeaderFooter>
+                    </>
+                }
             </PostHeaderContainer>
 
             <PostContent>

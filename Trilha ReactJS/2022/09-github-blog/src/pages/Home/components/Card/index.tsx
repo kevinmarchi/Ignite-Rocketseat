@@ -2,7 +2,16 @@ import { format, formatDistanceToNow } from "date-fns";
 import { CardHeader, Container } from "./styles";
 import { ptBR } from "date-fns/locale";
 
-export function Card({issue} : any) {
+interface CardProps {
+    issue: {
+        title: string;
+        body: string;
+        number: number;
+        updated_at: string;
+    }
+}
+
+export function Card({issue} : CardProps) {
 
     const publishedDateFormatted = format(new Date(issue.updated_at), "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR,

@@ -5,13 +5,34 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Loader } from "../../components/Loader";
 
+interface Issue {
+    id: number;
+    title: string;
+    body: string;
+    number: number;
+    updated_at: string;
+}
+
+interface ProfileData {
+    name: string;
+    bio: string;
+    login: string;
+    avatar_url: string;
+    followers: number;
+}
+
+interface RepositoryIssues {
+    total_count: number;
+    items: Issue[]
+}
+
 export function Home() {
 
-    const [profileData, setProfileData] = useState({} as any)
-    const [repositoryIssues, setRepositoryIssues] = useState({} as any)
+    const [profileData, setProfileData] = useState<ProfileData>({} as ProfileData)
+    const [repositoryIssues, setRepositoryIssues] = useState<RepositoryIssues>({} as RepositoryIssues)
     const [loading, setLoading] = useState(false)
     const [searchField, setSearchField] = useState('');
-    const [repositoryIssuesFiltered, setRepositoryIssuesFiltered] = useState([])
+    const [repositoryIssuesFiltered, setRepositoryIssuesFiltered] = useState<Issue[]>([])
 
     useEffect(() => {
         async function fetchData() {
@@ -35,7 +56,7 @@ export function Home() {
 
     useEffect(() => {
         
-        const issueFiltered = repositoryIssues.items?.filter((issue: any) => {
+        const issueFiltered = repositoryIssues.items?.filter((issue: Issue) => {
             if(issue.title.includes(searchField)) {
                 return issue
             }
@@ -83,11 +104,11 @@ export function Home() {
             <CardContainer>
                 {loading ? <Loader /> : (
                         repositoryIssuesFiltered === undefined ? (
-                            repositoryIssues.items?.map((issue: any) => {
+                            repositoryIssues.items?.map((issue: Issue) => {
                                 return <Card key={issue.id} issue={issue}/>
                             })
                         ) : (
-                            repositoryIssuesFiltered.map((issue: any) => {
+                            repositoryIssuesFiltered.map((issue: Issue) => {
                                 return <Card key={issue.id} issue={issue}/>
                             })
                         )                                         

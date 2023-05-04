@@ -7,6 +7,8 @@ export const Container = styled(Link)`
     border: solid 3px ${props => props.theme["base-post"]};
     border-radius: 20px;
     text-decoration: none;
+    width: 100%;
+    overflow: hidden;
     
     p {
         color: ${props => props.theme["base-text"]};
@@ -20,6 +22,7 @@ export const Container = styled(Link)`
         border: solid 3px ${props => props.theme["base-border"]};
         cursor: pointer;
     }
+
 `
 
 export const CardHeader = styled.div`

@@ -1,3 +1,4 @@
+import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 export const PostHeaderContainer = styled.div`
@@ -77,12 +78,8 @@ export const PostContent = styled.div`
     padding: 3rem;
     color: ${props => props.theme["base-text"]};
 
-    h4 {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-
+    h1,h2,h3 {
         color: ${props => props.theme["blue"]};
-        font-size: 1.2rem;
         text-decoration: underline;
     }
 
@@ -91,16 +88,17 @@ export const PostContent = styled.div`
     }
 `
 
-export const CodeText = styled.div`
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: ${props => props.theme["base-post"]};
+export const ReactMarkdownStyled = styled(ReactMarkdown)`
+    white-space: pre-wrap;
 
     pre {
+        background-color: ${props => props.theme["base-post"]};
+        padding: 1rem;
         white-space: pre-wrap;
+        word-break: break-all;
     }
 
-    @media (max-width: 630px) {
-        padding: 1rem;
+    a {
+        color: ${props => props.theme["base-subtitle"]};
     }
 `

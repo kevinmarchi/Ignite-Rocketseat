@@ -136,7 +136,7 @@ export const CardContainer = styled.div`
     grid-gap: 1rem;
     grid-template-columns: 1fr 1fr;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
         grid-template-columns: 1fr;
     }
 `

@@ -1,11 +1,12 @@
 import { ArrowLeft, Calendar, ChatCircle, GithubLogo, Share } from "phosphor-react"
-import { CodeText, PostContent, PostHeaderContainer, PostHeaderFooter, PostHeaderLinks, PostHeaderTitle } from "./styles"
+import { PostContent, PostHeaderContainer, PostHeaderFooter, PostHeaderLinks, PostHeaderTitle, ReactMarkdownStyled } from "./styles"
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { format, formatDistanceToNow } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { Loader } from "../../components/Loader"
+import remarkGfm from "remark-gfm"
 
 interface IssueData {
     title: string;
@@ -15,6 +16,7 @@ interface IssueData {
     user: {
         login: string;
     };
+    body: string;
 }
 
 export function Post() {
@@ -37,12 +39,6 @@ export function Post() {
         }
         fetchData()
     }, [])
-
-    const code = `
-    let foo = 42;   // foo is now a number
-    foo = ‘bar’;    // foo is now a string
-    foo = true;     // foo is now a boolean
-    `
 
     return (
         <>
@@ -79,17 +75,7 @@ export function Post() {
             </PostHeaderContainer>
 
             <PostContent>
-                <p><b>Programming languages all have built-in data structures, but these often differ from one language to another.</b> This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are draw.</p>
-                <h4>Dynamic Tiping</h4>
-                <p>JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types:</p>
-
-                <CodeText>
-                    <pre>
-                        <code>
-                            {code}
-                        </code>
-                    </pre>
-                </CodeText>
+                <ReactMarkdownStyled remarkPlugins={[remarkGfm]}>{issueData.body}</ReactMarkdownStyled>
             </PostContent>
         </>
     )

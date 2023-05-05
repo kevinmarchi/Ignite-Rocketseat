@@ -83,6 +83,10 @@ export const PostContent = styled.div`
         text-decoration: underline;
     }
 
+    img {
+        width: 100%;
+    }
+
     @media (max-width: 650px) {
         padding: 1rem;
     }

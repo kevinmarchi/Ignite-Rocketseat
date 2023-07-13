@@ -1,11 +1,14 @@
 import { User } from "lucide-react";
 
+import nlwLogo from '../assets/nlw-spacetime-logo.svg'
+import Image from "next/image";
+
 export default function Home() {
 	return (
 		<main className="grid grid-cols-2 min-h-screen">
 			{/* Left */}
 			<div className="flex flex-col items-start justify-between px-28 py-16 relative overflow-hidden border-r border-white/10 bg-[url(../assets/bg-stars.svg)] bg-cover">
-				{/* BLur */}
+				{/* Blur */}
 				<div className="absolute right-0 top-1/2 h-[288px] w-[526px] -translate-y-1/2 translate-x-1/2 rounded-full bg-purple-700 opacity-50 blur-full"></div>
 				{/* Stripes */}
 				<div className="absolute right-2 top-0 bottom-0 w-2 bg-stripes"></div>
@@ -18,6 +21,21 @@ export default function Home() {
 					<p className="text-sm leading-snug max-w-[140px]"><span className="underline">Crie sua conta</span> e salve suas memórias!</p>
 				</a>
 				{/* Hero */}
+				<div className="space-y-5">
+					<Image src={nlwLogo} alt="NLW Spacetime" />
+
+					<div className="max-w-[420px] space-y-1">
+						<h1 className="text-5xl font-bold leading-tight text-gray-50">Sua cápsula do tempo</h1>
+						<p className="mt-1 text-lg leading-relaxed">Colecione momentos marcantes da sua jornada e compartilhe (se quiser) com o mundo!</p>
+					</div>
+
+					<a className="inline-block rounded-full bg-green-500 px-5 py-3 font-alt text-sm uppercase leading-none text-black hover:bg-green-600 transition-colors" href="">CADASTRAR LEMBRANÇA</a>
+				</div>
+
+				{/* Copyright */}
+				<div className="text-sm leading-relaxed text-gray-200">
+					Feito com 💜 no NLW da <a href="http://kevinmarchi.dev.br" target="_blank" className="underline hover:text-gray-100 transition-colors" rel="noreferrer">Rocketseat</a>
+				</div>
 			</div>
 			{/* Right */}
 			<div className="flex flex-col p-16 bg-[url(../assets/bg-stars.svg)] bg-cover">

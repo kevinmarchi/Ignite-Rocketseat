@@ -15,6 +15,13 @@
       "when": 1754922964113,
       "tag": "0001_needy_mole_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755095199795,
+      "tag": "0002_daffy_starbolt",
+      "breakpoints": true
     }
   ]
 }
